@@ -28,7 +28,7 @@ commands:
       - cloudsmith/install-cli
       - run:
           command: |
-            .circleci/publish-cloudsmith.sh img bbn-projects/bbn-repo ${PKG_DISTRO}/${PKG_RELEASE}
+            .circleci/publish-cloudsmith.sh img brahman/bbn-os-rockpi ${PKG_DISTRO}/${PKG_RELEASE}
           no_output_timeout: 40m
   do-all:
     steps:
@@ -70,9 +70,21 @@ jobs:
       - EMU=off
     steps:
       - do-all
+  build-armbian-bookworm-arm64:
+    executor: boot-linux-arm
+    environment:
+      - DOCKER_IMAGE=arm64v8/debian:bookworm
+      - CONTAINER_DISTRO=debian:bookworm
+      - PKG_RELEASE=armbian
+      - PKG_DISTRO=bookworm
+      - PKG_ARCH=arm64
+      - EMU=off
+    steps:
+      - do-all
 workflows:
   version: 2
   build_all:
     jobs:
-      - build-full-raspbian-bookworm-arm64
-      - build-lite-raspbian-bookworm-arm64
+      # - build-full-raspbian-bookworm-arm64
+      # - build-lite-raspbian-bookworm-arm64
+      - build-armbian-bookworm-arm64
