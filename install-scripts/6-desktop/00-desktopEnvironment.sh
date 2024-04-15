@@ -6,7 +6,7 @@ install  -v "$FILE_FOLDER"/Xwrapper.config "/etc/X11/"
 arch=$(dpkg --print-architecture)
 
 # Install touchscreen drivers, etc
-apt-get -q -y install xserver-xorg-input-libinput xinput libinput-tools xinput-calibrator gldriver-test \
+apt-get -q -y install xserver-xorg-input-libinput xinput libinput-tools xinput-calibrator \
  budgie-desktop budgie-weathershow-applet budgie-rotation-lock-applet \
  gstreamer1.0-x gstreamer1.0-omx gstreamer1.0-plugins-base \
  gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa \
