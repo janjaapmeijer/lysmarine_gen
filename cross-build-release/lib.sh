@@ -78,7 +78,7 @@ umountImageFile() {
   umount "$rootfs"/tmp
   umount "$rootfs"/install-scripts/stageCache
   umount "$rootfs"/run/shm
-  if [ ! thisArch == "armbian"]; then
+  if [ ! $thisArch == "armbian"]; then
     umount "$rootfs"/boot
   fi
   umount "$rootfs"
