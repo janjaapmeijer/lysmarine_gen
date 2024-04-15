@@ -11,6 +11,10 @@
   zipName="Armbian_23.8.1_Rockpi-4b_bookworm_current_6.1.50.img.xz"
   imageSource="https://armbian.tnahosting.net/archive/rockpi-4b/archive/${zipName}"
 
+  if [ "$thisArch" == "armbian" ] ; then
+    echo "Building Armbian for RockPi4b ..."
+  fi
+  
   checkRoot
 
   # Create caching folder hierarchy to work with this architecture.
