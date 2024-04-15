@@ -15,7 +15,7 @@ else
     dconf-editor gedit gnome-calculator \
     python3-gpiozero libusb-1.0-0-dev \
     sysstat jq xmlstarlet uhubctl iotop rsync timeshift at \
-    rpi-imager piclone fontconfig gnome-disk-utility xfce4-screenshooter catfish \
+    fontconfig gnome-disk-utility xfce4-screenshooter catfish \ # rpi-imager piclone 
     libcanberra-gtk-module hardinfo baobab #  restic gnome-chess openpref nautic foxtrotgps
 fi
 
