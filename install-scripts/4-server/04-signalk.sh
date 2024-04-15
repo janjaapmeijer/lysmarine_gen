@@ -103,11 +103,6 @@ else
                  sk-resources-fs  \
                  freeboard-sk-helper  \
                  skwiz  \
-                 signalk-raspberry-pi-bme280  \
-                 signalk-raspberry-pi-bmp180  \
-                 signalk-raspberry-pi-ina219  \
-                 signalk-raspberry-pi-1wire  \
-                 signalk-raspberry-mcs  \
                  signalk-venus-plugin  \
                  signalk-mqtt-gw  \
                  signalk-mqtt-home-asisstant  \
@@ -139,7 +134,6 @@ else
                  node-red-contrib-sensor-htu21d \
                  node-red-contrib-ina-sensor \
                  signalk-sonoff-ewelink  \
-                 signalk-raspberry-pi-monitoring  \
                  @mxtommy/kip  \
                  signalk-fusion-stereo  \
                  signalk-barometer-trend  \
@@ -188,8 +182,8 @@ else
 fi
 
 
-sed -i "s#sudo ##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js || true
-sed -i "s#/opt/vc/bin/##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js || true
+# sed -i "s#sudo ##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js || true
+# sed -i "s#/opt/vc/bin/##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js || true
 sed -i 's#@signalk/server-admin-ui#admin#' "$(find /usr/lib/node_modules/signalk-server -name tokensecurity.js)" || true
 
 # see https://github.com/SignalK/signalk-server/pull/1455/
@@ -208,7 +202,7 @@ echo "signalk ALL=(ALL) NOPASSWD: /bin/date" >>/etc/sudoers
 npm cache clean --force
 
 # For Seatalk
-systemctl disable pigpiod
+systemctl disable pigpiod || true
 
 # For Seatalk
 wget -q -O - https://raw.githubusercontent.com/MatsA/seatalk1-to-NMEA0183/master/STALK_read.py > /usr/local/sbin/STALK_read.py
