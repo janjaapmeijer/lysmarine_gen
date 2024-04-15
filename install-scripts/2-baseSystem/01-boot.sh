@@ -31,7 +31,7 @@ fi
 
 ## Armbian
 if [ -f /boot/armbianEnv.txt ]; then
-	echo "console=serial" >> /boot/armbianEnv.txt
+  echo "console=serial" >> /boot/armbianEnv.txt
 fi
 
 # Debian
@@ -50,7 +50,7 @@ plymouth-set-default-theme dreams
 
 # Armbian
 if [ -f /etc/issue ]; then
-	rm /etc/issue /etc/issue.net
+  rm -f /etc/issue /etc/issue.net
 fi
 
 # Raspbian enable this to intercept keystroke during the boot process, (for ondemand cup freq management.) We don't want to set it that way.
@@ -73,7 +73,9 @@ EOF'
 #EOF'
 
 # Swap
-sed -i 's/CONF_SWAPSIZE=100$/CONF_SWAPSIZE=2048/' /etc/dphys-swapfile
+if [ ! $thisArch == "armbian"]; then
+  sed -i 's/CONF_SWAPSIZE=100$/CONF_SWAPSIZE=2048/' /etc/dphys-swapfile
+fi
 
 
 #systemctl disable systemd-firstboot.service
