@@ -78,7 +78,9 @@ umountImageFile() {
   umount "$rootfs"/tmp
   umount "$rootfs"/install-scripts/stageCache
   umount "$rootfs"/run/shm
-  umount "$rootfs"/boot
+  if [ ! thisArch == "armbian"]; then
+    umount "$rootfs"/boot
+  fi
   umount "$rootfs"
 
   kpartx -d "$imageFile"
