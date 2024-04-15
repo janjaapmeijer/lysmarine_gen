@@ -1,7 +1,7 @@
 # Bareboat Necessities OS for the RockPi
 This is a fork of:
-- [](https://github.com/lysmarine/lysmarine_gen.git) and
-- [](https://github.com/bareboat-necessities/lysmarine_gen)
+- [https://github.com/lysmarine/lysmarine_gen.git](https://github.com/lysmarine/lysmarine_gen.git) and
+- [https://github.com/bareboat-necessities/lysmarine_gen](https://github.com/bareboat-necessities/lysmarine_gen)
 
 ## Choose which Armbian image your device needs
 The archive of different Armbian images for different device can be found [here](https://armbian.tnahosting.net/archive) and need to be changed in /cross-build-release/armbian.sh.
