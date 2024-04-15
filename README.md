@@ -19,6 +19,8 @@ The archive of different Armbian images for different device can be found [here]
 * You can burn this image using RaspberryPi imager to SD card and use that SD card to boot your raspberry Pi
 * You can edit files inside install-scripts directory push them into github and customize your image.
 
+## [Optional] Add root to NVME
+
 ## License
 
 BBN Marine OS and Lysmarine scripts distributed under GPLv3
