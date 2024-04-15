@@ -17,12 +17,12 @@ usermod -a -G pypilot user
 
 # Op way
 apt-get install -y -q --no-install-recommends --no-install-suggests \
-  git gcc python3 python3-pip python3-dev python3-setuptools libpython3-dev \
+  git build-essential gcc python3 python3-pip python3-dev python3-setuptools libpython3-dev \
   python3-wheel python3-numpy python3-scipy swig python3-ujson libjpeg62-turbo \
   python3-serial python3-pyudev python3-pil python3-flask python3-engineio \
   python3-opengl python3-wxgtk4.0 libwxgtk3.2-1=3.2.2+dfsg-2 libgles1 \
-  libffi-dev python3-gevent python3-zeroconf watchdog lirc gpiod pigpio-tools lm-sensors ir-keytable \
-  pigpio python3-pigpio python3-rpi.gpio gettext python3-flask-babel \
+  libffi-dev python3-gevent python3-zeroconf watchdog lirc gpiod lm-sensors ir-keytable \
+  python3-rpi.gpio apt-offline gettext python3-flask-babel \
   libelf1 libftdi1-2 libhidapi-libusb0 libusb-0.1-4 libusb-1.0-0 \
   meson cmake make acl avrdude # https://kingtidesailing.blogspot.com/2016/02/how-to-setup-mpu-9250-on-raspberry-pi_25.html
   # octave
@@ -39,8 +39,8 @@ install -v -m 0644 "$FILE_FOLDER"/60-watchdog.rules "/etc/udev/rules.d/60-watchd
 export MAKEFLAGS='-j 4'
 
 if [ "$LMARCH" == 'arm64' ]; then
-#  pip3 install pywavefront pyglet gps gevent-websocket websocket-client importlib_metadata \
-#    python-socketio flask-socketio wmm2020
+  pip3 install pywavefront pyglet gps gevent-websocket websocket-client importlib_metadata \
+  python-socketio flask-socketio wmm2020
   apt-get install -y -q python3-pywavefront python3-pyglet python3-gps python3-gevent-websocket \
     python3-websocket python3-importlib-metadata \
     python3-socketio python3-flask-socketio
@@ -183,10 +183,14 @@ sed '1 i :msg, contains, "Failed to open I2C bus" stop' -i /etc/rsyslog.conf || 
 sed '1 i :msg, contains, "Using fusion algorithm Kalman" stop' -i /etc/rsyslog.conf || true
 
 # prevent pypilot from changing port
-sed -i 's/8000/8080/' /etc/systemd/system/pypilot_web.service || true
+if [ -f  /etc/systemd/system/pypilot_web.service ]; then
+  sed -i 's/8000/8080/' /etc/systemd/system/pypilot_web.service || true
+fi
 
 # TODO: temp patch
-install -m 644 "$FILE_FOLDER"/wind.py "$(find /usr/local/lib -name wind.py)"
+if [ ! $thisArch == "armbian"]; then
+  install -m 644 "$FILE_FOLDER"/wind.py "$(find /usr/local/lib -name wind.py)"
+fi
 
 # TODO: not needed after changing pypilot service working directory
 echo > /RTIMULib.ini
