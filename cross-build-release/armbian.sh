@@ -12,7 +12,7 @@
   imageSource="https://armbian.tnahosting.net/archive/rockpi-4b/archive/${zipName}"
 
   if [ "$thisArch" == "armbian" ] ; then
-    echo "Building Armbian for RockPi4b ..."
+    log "Building Armbian for RockPi4b ..."
   fi
   
   checkRoot
