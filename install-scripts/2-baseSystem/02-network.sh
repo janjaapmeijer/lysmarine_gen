@@ -6,7 +6,11 @@ apt-get install -y -q network-manager make avahi-daemon bridge-utils wakeonlan #
 # Resolve lysmarine.local
 install -v "$FILE_FOLDER"/hostname "/etc/"
 cat "$FILE_FOLDER"/hosts >> /etc/hosts
-sed -i '/raspberrypi/d' /etc/hosts
+if [ ! $thisArch == "armbian"]; then
+  sed -i '/rockpi-4b/d' /etc/hosts
+else
+  sed -i '/raspberrypi/d' /etc/hosts
+fi
 
 # Access Point management
 install -m0600 -v "$FILE_FOLDER"/lysmarine-hotspot.nmconnection "/etc/NetworkManager/system-connections/"
