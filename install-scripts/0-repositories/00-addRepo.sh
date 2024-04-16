@@ -79,6 +79,7 @@ rm -f flightaware-apt-repository_1.2_all.deb
 
 ## Update && Upgrade
 apt-get update  -y -q
-apt-get upgrade -y -q
+DEBIAN_FRONTEND=noninteractive \
+  apt-get upgrade -y -q
 
 systemctl preset-all
