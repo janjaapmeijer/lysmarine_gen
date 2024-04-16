@@ -54,8 +54,10 @@ if [ -f /etc/issue ]; then
 fi
 
 # Raspbian enable this to intercept keystroke during the boot process, (for ondemand cup freq management.) We don't want to set it that way.
-systemctl disable triggerhappy.service
-systemctl disable triggerhappy.socket
+if [ $thisArch == "rasbian"]; then
+  systemctl disable triggerhappy.service
+  systemctl disable triggerhappy.socket
+fi
 
 install -v -m0644 "$FILE_FOLDER"/plymouth-start.service "/etc/systemd/system/"
 
