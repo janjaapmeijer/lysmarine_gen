@@ -9,6 +9,23 @@ apt-get -q -y install i2c-tools python3-smbus dos2unix traceroute telnet whois s
   sysstat jq xmlstarlet uhubctl iotop rsync timeshift restic at \
   fontconfig gnome-disk-utility catfish xfce4-screenshooter hardinfo baobab # rpi-imager piclone nautic foxtrotgps
 
+if [ "$BBN_KIND" == "LITE" ] ; then
+  apt-get -q -y --no-install-recommends --no-install-suggests install \
+    i2c-tools python3-smbus dos2unix traceroute telnet whois socat gdal-bin openvpn seahorse inxi \
+    dconf-editor gedit gnome-calculator gnome-chess openpref sysstat jq xmlstarlet uhubctl iotop libusb-1.0-0-dev \
+    rsync timeshift restic at \
+    fontconfig gnome-disk-utility xfce4-screenshooter \
+    libcanberra-gtk-module hardinfo baobab
+else
+  apt-get -q -y --no-install-recommends --no-install-suggests install i2c-tools python3-smbus dos2unix \
+    traceroute telnet whois socat gdal-bin openvpn seahorse inxi \
+    dconf-editor gedit gnome-calculator \
+    python3-gpiozero libusb-1.0-0-dev \
+    sysstat jq xmlstarlet uhubctl iotop rsync timeshift at \
+    fontconfig gnome-disk-utility xfce4-screenshooter catfish \ # rpi-imager piclone 
+    libcanberra-gtk-module hardinfo baobab #  restic gnome-chess openpref nautic foxtrotgps
+fi
+
 systemctl disable openvpn
 
 apt-get clean
@@ -35,6 +52,10 @@ pip3 install adafruit-ampy
 
 install -v -m 0755 "$FILE_FOLDER"/bbn-change-password.sh "/usr/local/bin/bbn-change-password"
 install -v -m 0755 "$FILE_FOLDER"/bbn-rename-host.sh "/usr/local/sbin/bbn-rename-host"
+
+if [ "$BBN_KIND" == "LITE" ] ; then
+  exit 0
+fi
 
 install -v -o 1000 -g 1000 -m 0644 "$FILE_FOLDER"/add-ons/readme.txt "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/deskpi-pro-install.sh "/home/user/add-ons/"

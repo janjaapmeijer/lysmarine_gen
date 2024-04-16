@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+if [ "$BBN_KIND" == "LITE" ] ; then
+  exit 0
+fi
+
 apt-get clean
 
 apt-get -y -q install geographiclib-tools libqt5charts5 libqt5multimediawidgets5 libqt5script5 # stellarium stellarium-data

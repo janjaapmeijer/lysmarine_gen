@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+if [ "$BBN_KIND" == "LITE" ] ; then
+  exit 0
+fi
+
 if [ "$LMARCH" == 'armhf' ]; then
   apt-get -y install openjdk-11-jdk openjdk-11-jdk-headless openjdk-11-jre openjdk-11-jre-headless
 

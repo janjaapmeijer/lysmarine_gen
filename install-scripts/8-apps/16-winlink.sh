@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+if [ "$BBN_KIND" == "LITE" ] ; then
+  exit 0
+fi
+
 # See: https://getpat.io/
 
 apt-get -y install libax25 ax25-tools tmd710-tncsetup

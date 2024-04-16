@@ -1,5 +1,9 @@
 #!/bin/bash -e
 
+if [ "$BBN_KIND" == "LITE" ] ; then
+  exit 0
+fi
+
 apt-get clean
 
 install -v "$FILE_FOLDER"/jtides.desktop /usr/local/share/applications/
