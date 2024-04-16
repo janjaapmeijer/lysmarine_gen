@@ -3,12 +3,6 @@
 apt-get clean
 npm cache clean --force
 
-apt-get -q -y install i2c-tools python3-smbus dos2unix traceroute telnet whois socat gdal-bin openvpn seahorse inxi \
-  dconf-editor gedit gnome-calculator gnome-chess openpref \
-  python3-gpiozero libusb-1.0-0-dev \
-  sysstat jq xmlstarlet uhubctl iotop rsync timeshift restic at \
-  fontconfig gnome-disk-utility catfish xfce4-screenshooter hardinfo baobab # rpi-imager piclone nautic foxtrotgps
-
 if [ "$BBN_KIND" == "LITE" ] ; then
   apt-get -q -y --no-install-recommends --no-install-suggests install \
     i2c-tools python3-smbus dos2unix traceroute telnet whois socat gdal-bin openvpn seahorse inxi \
@@ -22,8 +16,8 @@ else
     dconf-editor gedit gnome-calculator \
     python3-gpiozero libusb-1.0-0-dev \
     sysstat jq xmlstarlet uhubctl iotop rsync timeshift at \
-    fontconfig gnome-disk-utility xfce4-screenshooter catfish \ # rpi-imager piclone 
-    libcanberra-gtk-module hardinfo baobab #  restic gnome-chess openpref nautic foxtrotgps
+    fontconfig gnome-disk-utility xfce4-screenshooter catfish \ 
+    libcanberra-gtk-module hardinfo baobab # rpi-imager piclone restic gnome-chess openpref nautic foxtrotgps
 fi
 
 systemctl disable openvpn
