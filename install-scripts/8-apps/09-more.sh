@@ -7,7 +7,7 @@ if [ "$BBN_KIND" == "LITE" ] ; then
   apt-get -q -y --no-install-recommends --no-install-suggests install i2c-tools python3-smbus dos2unix \
     traceroute telnet socat gdal-bin openvpn \
     gedit sysstat jq xmlstarlet uhubctl iotop libusb-1.0-0-dev \
-    rpi-imager piclone fontconfig gnome-disk-utility xfce4-screenshooter \
+    fontconfig gnome-disk-utility xfce4-screenshooter \ # rpi-imager piclone
     libcanberra-gtk-module hardinfo baobab
 else
   apt-get -q -y --no-install-recommends --no-install-suggests install i2c-tools python3-smbus dos2unix \
