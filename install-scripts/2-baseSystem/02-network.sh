@@ -6,8 +6,8 @@ apt-get install -y -q network-manager make avahi-daemon bridge-utils wakeonlan #
 # Resolve lysmarine.local
 install -v "$FILE_FOLDER"/hostname "/etc/"
 cat "$FILE_FOLDER"/hosts >> /etc/hosts
-if [ ! $thisArch == "armbian"]; then
-  sed -i '/rockpi-4b/d' /etc/hosts
+if [ $thisArch == "armbian"]; then
+  sed -i "/${hostname,}/d" /etc/hosts
 else
   sed -i '/raspberrypi/d' /etc/hosts
 fi
