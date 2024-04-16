@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+log "Add package repositories"
+
 apt-get update  -y -q
 apt-get install -y -q wget gnupg ca-certificates
 
