@@ -4,6 +4,7 @@
 
   MY_CPU_ARCH=$1
   LYSMARINE_VER=$2
+  BBN_KIND=$3
 
   thisArch="armbian"
   cpuArch="arm64"
@@ -79,7 +80,12 @@ EOF
   ls -l ./work/$thisArch/"$imageName"
 
   # Renaming the OS and moving it to the release folder.
-  cp -v ./work/$thisArch/"$imageName" ./release/$thisArch/lysmarine-bbn-bullseye_"${LYSMARINE_VER}"-${thisArch}-${cpuArch}.img
+  if [ "$BBN_KIND" == "LITE" ] ; then
+    BBN_IMG=lysmarine-bbn-lite-bullseye_"${LYSMARINE_VER}"-${thisArch}-${cpuArch}.img
+  else
+    BBN_IMG=lysmarine-bbn-bullseye_"${LYSMARINE_VER}"-${thisArch}-${cpuArch}.img
+  fi
+  cp -v ./work/$thisArch/"$imageName" ./release/$thisArch/"$BBN_IMG"
 
   exit 0
 }
