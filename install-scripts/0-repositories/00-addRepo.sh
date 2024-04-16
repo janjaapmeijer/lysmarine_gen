@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -xe
 {
   log "Add package repositories"
   
