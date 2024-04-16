@@ -8,16 +8,17 @@
   thisArch="armbian"
   cpuArch="arm64"
 
-  # https://mirrors.aliyun.com/armbian-releases/rockpi-4cplus/archive/Armbian_v22.05.2_Rockpi-4cplus_bullseye_current_6.1.33_minimal.img.xz
-  # https://mirrors.aliyun.com/armbian-releases/rockpi-4cplus/archive/Armbian_v22.05.2_Rockpi-4cplus_bullseye_current_6.1.33.img.xz
-  # https://armbian.hosthatch.com/archive/rockpi-4cplus/archive/Armbian_23.02.2_Rockpi-4cplus_bullseye_current_5.15.93_minimal.img.xz
-  # https://armbian.hosthatch.com/archive/rockpi-4cplus/archive/Armbian_23.02.2_Rockpi-4cplus_bullseye_current_5.15.93.img.xz
- 
+  #zipName="Armbian_v22.05.2_Rockpi-4cplus_bullseye_current_6.1.33.img.xz"
   #zipName="Armbian_23.02.2_Rockpi-4cplus_bullseye_current_5.15.93.img.xz"
-  #imageSource="https://armbian.hosthatch.com/archive/rockpi-4cplus/archive/${zipName}"
+  #imageSource="https://mirrors.aliyun.com/armbian-releases/rockpi-4cplus/archive/${zipName}"
+  
+  zipName="Armbian_22.05.4_Rockpi-4b_bullseye_current_5.15.48.img.xz"
+  # zipName="Armbian_23.02.2_Rockpi-4b_bullseye_current_5.15.93.img.xz"
+  imageSource="https://armbian.tnahosting.net/archive/rockpi-4b/archive/${zipName}"
 
-  zipName="Armbian_v22.05.2_Rockpi-4cplus_bullseye_current_6.1.33.img.xz"
-  imageSource="https://mirrors.aliyun.com/armbian-releases/rockpi-4cplus/archive/${zipName}"
+  if [ "$thisArch" == "armbian" ] ; then
+    log "Building Armbian for RockPi4b ..."
+  fi
   
   checkRoot
 
