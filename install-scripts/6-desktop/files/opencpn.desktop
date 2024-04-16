@@ -6,5 +6,5 @@ Exec=bash -c 'cd /usr/bin; onlyone /usr/bin/opencpn -l=error'
 Icon=opencpn
 Terminal=false
 Type=Application
-Categories=Navigation;
+Categories=System;GPS;Geography;Navigation;Chart;
 Keywords=GPS;Navigation;Chart;

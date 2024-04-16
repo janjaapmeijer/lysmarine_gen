@@ -1,12 +1,7 @@
 #!/bin/bash -e
 
-if [ "$BBN_KIND" == "LITE" ] ; then
-  exit 0
-fi
-
-apt-get install -y --no-install-recommends --no-install-suggests \
-  python3 python3-dev python3-venv python3-pip libffi-dev libssl-dev libjpeg-dev \
-  zlib1g-dev autoconf build-essential libopenjp2-7 libtiff6 libturbojpeg0 tzdata libsqlite3-dev
+apt-get install -y python3 python3-dev python3-venv python3-pip libffi-dev libssl-dev libjpeg-dev \
+   zlib1g-dev autoconf build-essential libopenjp2-7 libtiff5 libturbojpeg0 tzdata libsqlite3-dev
 
 mkdir libffi-tmp && cd libffi-tmp
 wget "https://github.com/libffi/libffi/releases/download/v3.3/libffi-3.3.tar.gz"
@@ -26,15 +21,17 @@ chown homeassistant:homeassistant /srv/homeassistant
 mkdir -p /home/homeassistant
 chown homeassistant:homeassistant /home/homeassistant
 
-su homeassistant --shell=/bin/bash -c "
-  cd /srv/homeassistant;
-  python3.11 -m venv . ;
-  source bin/activate;
-  python3.11 -m pip install wheel;
-  pip3.11 install homeassistant sqlalchemy fnvhash setuptools pyotp PyQRCode;
-  mkdir -p /home/homeassistant/.homeassistant;
-  rm -rf /home/homeassistant/.cache"
-
+{
+cat << EOF
+  cd /srv/homeassistant
+  python3.9 -m venv .
+  source bin/activate
+  python3.9 -m pip install wheel
+  pip3.9 install "homeassistant" sqlalchemy fnvhash setuptools
+  mkdir -p /home/homeassistant/.homeassistant
+  rm -rf /home/homeassistant/.cache
+EOF
+} | sudo -u homeassistant -H -s
 
 bash -c 'cat << EOF > /etc/systemd/system/home-assistant@homeassistant.service
 [Unit]
@@ -52,13 +49,6 @@ EOF'
 
 systemctl disable home-assistant@homeassistant
 
-######################## HomeAssistant Integrations
-
-git clone --depth 1 https://github.com/SmartBoatInnovations/ha-smart0183tcp
-cp -r ha-smart0183tcp/custom_components/smart0183tcp/ /home/homeassistant/.homeassistant/
-chown -R homeassistant:homeassistant /home/homeassistant/.homeassistant/smart0183tcp/
-rm -rf ha-smart0183tcp
-
 ######################## ESPHome
 
 mkdir -p /home/homeassistant/.homeassistant/esphome
@@ -67,13 +57,17 @@ cd /srv
 mkdir esphome
 chown homeassistant:homeassistant esphome
 
-su homeassistant --shell=/bin/bash -c "
-  cd /srv/esphome;
-  python3.11 -m venv . ;
-  source bin/activate;
-  python3.11 -m pip install wheel;
-  pip3.11 install esphome tornado esptool;
-  rm -rf /home/homeassistant/.cache"
+{
+cat << EOF
+  cd /srv/esphome
+  python3.9 -m venv .
+  source bin/activate
+  python3.9 -m pip install wheel
+  pip3.9 install esphome tornado esptool
+  rm -rf /home/homeassistant/.cache
+EOF
+} | sudo -u homeassistant -H -s
+
 
 bash -c 'cat << EOF > /etc/systemd/system/esphome@homeassistant.service
 [Unit]

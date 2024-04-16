@@ -4,16 +4,20 @@
 
   MY_CPU_ARCH=$1
   LYSMARINE_VER=$2
-  BBN_KIND=$3
 
   thisArch="armbian"
   cpuArch="arm64"
-  zipName="Armbian_23.8.1_Rockpi-4b_bookworm_current_6.1.50.img.xz"
-  imageSource="https://armbian.tnahosting.net/archive/rockpi-4b/archive/${zipName}"
 
-  if [ "$thisArch" == "armbian" ] ; then
-    log "Building Armbian for RockPi4b ..."
-  fi
+  # https://mirrors.aliyun.com/armbian-releases/rockpi-4cplus/archive/Armbian_v22.05.2_Rockpi-4cplus_bullseye_current_6.1.33_minimal.img.xz
+  # https://mirrors.aliyun.com/armbian-releases/rockpi-4cplus/archive/Armbian_v22.05.2_Rockpi-4cplus_bullseye_current_6.1.33.img.xz
+  # https://armbian.hosthatch.com/archive/rockpi-4cplus/archive/Armbian_23.02.2_Rockpi-4cplus_bullseye_current_5.15.93_minimal.img.xz
+  # https://armbian.hosthatch.com/archive/rockpi-4cplus/archive/Armbian_23.02.2_Rockpi-4cplus_bullseye_current_5.15.93.img.xz
+ 
+  #zipName="Armbian_23.02.2_Rockpi-4cplus_bullseye_current_5.15.93.img.xz"
+  #imageSource="https://armbian.hosthatch.com/archive/rockpi-4cplus/archive/${zipName}"
+
+  zipName="Armbian_v22.05.2_Rockpi-4cplus_bullseye_current_6.1.33.img.xz"
+  imageSource="https://mirrors.aliyun.com/armbian-releases/rockpi-4cplus/archive/${zipName}"
   
   checkRoot
 
@@ -59,7 +63,7 @@
   mount --rbind $myCache/stageCache $mkRoot/install-scripts/stageCache
   mount --rbind /run/shm $mkRoot/run/shm
   chroot $mkRoot /bin/bash -xe <<EOF
-    set -x; set -e; cd /install-scripts; export LMBUILD="armbian"; export BBN_KIND="$BBN_KIND"; ls; chmod +x *.sh; ./install.sh 0 2 4 6 8 a; exit
+    set -x; set -e; cd /install-scripts; export LMBUILD="armbian"; ls; chmod +x *.sh; ./install.sh 0 2 4 6 8 a; exit
 EOF
 
   # Unmount
@@ -74,12 +78,7 @@ EOF
   ls -l ./work/$thisArch/"$imageName"
 
   # Renaming the OS and moving it to the release folder.
-  if [ "$BBN_KIND" == "LITE" ] ; then
-    BBN_IMG=lysmarine-bbn-lite-bookworm_"${LYSMARINE_VER}"-${thisArch}-${cpuArch}.img
-  else
-    BBN_IMG=lysmarine-bbn-full-bookworm_"${LYSMARINE_VER}"-${thisArch}-${cpuArch}.img
-  fi
-  cp -v ./work/$thisArch/"$imageName" ./release/$thisArch/"$BBN_IMG"
+  cp -v ./work/$thisArch/"$imageName" ./release/$thisArch/lysmarine-bbn-bullseye_"${LYSMARINE_VER}"-${thisArch}-${cpuArch}.img
 
   exit 0
 }

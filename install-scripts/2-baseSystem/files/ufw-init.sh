@@ -4,9 +4,7 @@
 
 ufw default deny incoming
 ufw default allow outgoing
-ufw default allow routed
 
-ufw allow from 127.0.0.1
 ufw allow from 192.168.0.0/16
 ufw allow from 169.254.0.0/16
 ufw allow from 10.0.0.0/8
@@ -30,10 +28,4 @@ ufw allow in proto udp from ff00::/8
 # CanBus
 ufw allow in on can0 to any
 
-# DHCP bootstrap for AP
-ufw allow in on wlan0 from any port 68 to any port 67 proto udp
-
-# DNS for AP
-ufw allow in on wlan0 from 10.0.0.0/8 to any port 53
-
-ufw --force enable
+ufw enable

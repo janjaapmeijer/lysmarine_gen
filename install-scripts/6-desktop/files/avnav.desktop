@@ -6,5 +6,5 @@ Comment=AvNav ChartPlotter
 Exec=sh -c "/opt/AvNav/AvNav"
 Terminal=false
 Icon=gnome-globe
-Categories=Navigation;
+Categories=System;GPS;Geography;Navigation;Chart;
 Keywords=GPS;Navigation;Chart;

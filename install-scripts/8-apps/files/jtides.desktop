@@ -6,5 +6,5 @@ Comment=JTides
 Exec=sh -c "cd /usr/local/share/jtides; java -jar JTides.jar"
 Terminal=false
 Icon=weather-fog-symbolic
-Categories=Navigation;
+Categories=Navigation
 Keywords=Navigation

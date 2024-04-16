@@ -6,5 +6,5 @@ Comment=Quisk SDR
 Exec=sh -c "python3 -m quisk"
 Terminal=false
 Icon=radio
-Categories=Radio
+Categories=HamRadio;Radio
 Keywords=HamRadio;Radio

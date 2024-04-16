@@ -8,7 +8,7 @@
         <focusNew>yes</focusNew>
         <!-- always try to focus new windows when they appear. other rules do
            apply -->
-        <followMouse>no</followMouse>
+        <followMouse>yes</followMouse>
         <!-- move focus to a window when you move the mouse into it -->
         <focusLast>yes</focusLast>
         <!-- focus the last used window when changing desktops, instead of the one
@@ -40,7 +40,7 @@
                       'Active' - where the active window is -->
     </placement>
     <theme>
-        <name>Natura</name>
+        <name>Adapta-Nokto</name>
         <titleLayout>LIMC</titleLayout>
         <!--
           available characters are NDSLIMC, each can occur at most once.
@@ -53,7 +53,7 @@
           D: omnipresent (on all desktops).
       -->
         <keepBorder>yes</keepBorder>
-        <animateIconify>no</animateIconify>
+        <animateIconify>yes</animateIconify>
         <font place="ActiveWindow">
             <name>sans</name>
             <size>16</size>
@@ -74,7 +74,7 @@
         </font>
         <font place="MenuHeader">
             <name>sans</name>
-            <size>11</size>
+            <size>9</size>
             <!-- font size in points -->
             <weight>normal</weight>
             <!-- 'bold' or 'normal' -->
@@ -92,7 +92,7 @@
         </font>
         <font place="ActiveOnScreenDisplay">
             <name>sans</name>
-            <size>11</size>
+            <size>9</size>
             <!-- font size in points -->
             <weight>bold</weight>
             <!-- 'bold' or 'normal' -->
@@ -101,7 +101,7 @@
         </font>
         <font place="InactiveOnScreenDisplay">
             <name>sans</name>
-            <size>11</size>
+            <size>9</size>
             <!-- font size in points -->
             <weight>bold</weight>
             <!-- 'bold' or 'normal' -->
@@ -693,16 +693,7 @@
             <decor>yes</decor>
         </application>
 
-        <application class="OpenCPN" type="normal">
-            <maximized>no</maximized>
-            <decor>yes</decor>
-        </application>
-        <application class="OpenCPN" title="OpenCPN*" type="normal">
-            <maximized>yes</maximized>
-            <decor>yes</decor>
-        </application>
-        <application class="OpenCPN" title="About*" type="normal">
-            <maximized>yes</maximized>
+        <application name="opencpn">
             <decor>yes</decor>
         </application>
 
@@ -715,6 +706,10 @@
         </application>
 
         <application name="evdev-rce">
+            <skip_taskbar>yes</skip_taskbar>
+        </application>
+
+        <application class="tint2">
             <skip_taskbar>yes</skip_taskbar>
         </application>
 

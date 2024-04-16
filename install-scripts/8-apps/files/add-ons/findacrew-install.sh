@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-bash -c 'cat << EOF > /usr/local/share/applications/findacrew.desktop
+sudo bash -c 'cat << EOF > /usr/local/share/applications/findacrew.desktop
 [Desktop Entry]
 Type=Application
 Name=Find a Crew
@@ -9,5 +9,5 @@ Comment=Find a Crew
 Exec=gnome-www-browser https://www.findacrew.net/
 Terminal=false
 Icon=gnome-globe
-Categories=Network;
+Categories=WWW;Internet
 EOF'

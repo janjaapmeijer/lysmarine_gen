@@ -184,7 +184,7 @@ Exec=stellarium-augmented --startup-script=%f
 Icon=stellarium
 StartupNotify=false
 Terminal=false
-Categories=Navigation;
+Categories=Astronomy;Education;Science;
 Comment=Planetarium
 Comment[af]=Planetarium
 Comment[ar]=قبة سماوية

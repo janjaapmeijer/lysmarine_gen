@@ -1,23 +1,20 @@
 #!/bin/bash -e
 
-if [ "$BBN_KIND" == "LITE" ] ; then
-  exit 0
-fi
+apt-get -y install libwxgtk3.0-gtk3-dev libwxgtk-media3.0-gtk3-dev libboost-dev meson cmake make git
 
-apt-get -y install libwxgtk3.2-dev libwxgtk-media3.2-dev libboost-dev cmake make git
-
-git clone --recursive https://github.com/wxFormBuilder/wxFormBuilder
+git clone https://github.com/wxFormBuilder/wxFormBuilder
 cd wxFormBuilder
-#git checkout 0efcecf0214321ce94469a47d0e0ceef131de602  # 4.0.0
-#git submodule update --recursive
+git checkout 2d20e717ac918a5f8f4728146c29a3d83a6a3afd  # Nov 1, 2021
+git submodule update --recursive
 
-cmake -S . -B _build -G "Unix Makefiles" --install-prefix "$(pwd)/_install" -DCMAKE_BUILD_TYPE=Release
-cmake --build _build --config Release -j 4
-cmake --install _build --config Release
+meson _build --prefix "$PWD"/_install --buildtype=release
+ninja -C _build -j 4 install
 
 cd _install
 
-cp -r ./* /usr/local
+mv bin/* /usr/local/bin/
+mv share/* /usr/local/share/
+mv lib/a*-linux-*/* /usr/local/lib/
 
 cd ..
 
@@ -25,22 +22,17 @@ cd ..
 rm -rf wxFormBuilder
 
 
-bash -c 'cat << EOF > /usr/local/share/applications/org.wxformbuilder.wxFormBuilder.desktop
+bash -c 'cat << EOF > /usr/local/share/applications/wxformbuilder.desktop
 [Desktop Entry]
-Version=1.0
 Type=Application
-Name=wxFormBuilder
-Comment=GUI builder for wxWidgets
-TryExec=wxformbuilder
-Exec=onlyone wxformbuilder %f
+Name=WxFormBuilder
+GenericName=WxFormBuilder
+Comment=WxFormBuilder
+Exec=onlyone wxformbuilder
 Terminal=false
-Icon=org.wxformbuilder.wxFormBuilder
-MimeType=application/x-wxformbuilder;
-Categories=Utility
-Keywords=wxWidgets;XRC;GUI;builder;designer;
+Icon=document
+Categories=Utility;
 EOF'
 
 
-apt-get -y remove --purge libboost-dev libwxgtk3.2-dev libwxgtk-media3.2-dev
-
-apt-get -y install libwxgtk3.2-1 libwxgtk-media3.2-1
+apt-get -y remove --purge libboost-dev

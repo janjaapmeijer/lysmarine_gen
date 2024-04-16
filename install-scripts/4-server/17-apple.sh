@@ -6,7 +6,7 @@ install -v -m 0644 "$FILE_FOLDER"/shairport-sync.conf "/etc/"
 
 usermod -aG gpio shairport-sync
 
-systemctl disable shairport-sync # will start it via autostart
+systemctl enable shairport-sync
 
 install -m 755 -d -o usbmux -g plugdev "/var/lib/usbmux"
 

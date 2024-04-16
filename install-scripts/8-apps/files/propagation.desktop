@@ -6,5 +6,5 @@ Comment=HF Propagation
 Exec=gnome-www-browser /usr/local/share/hf-propagation/propagation.html
 Terminal=false
 Icon=accessories-dictionary
-Categories=Radio
+Categories=HamRadio
 Keywords=HamRadio

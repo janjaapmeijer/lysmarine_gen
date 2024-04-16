@@ -1,9 +1,5 @@
 #!/bin/bash -e
 
-if [ "$BBN_KIND" == "LITE" ] ; then
-  exit 0
-fi
-
 groupadd solarthing
 useradd -r -g solarthing -G dialout,tty,video solarthing
 usermod -a -G dialout,tty,video solarthing

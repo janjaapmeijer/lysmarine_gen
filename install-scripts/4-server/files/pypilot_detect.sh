@@ -13,9 +13,9 @@ if [ -f "$DEV_FILE" ]; then
     # enable lirc, config gpio
     if ! grep -q "^dtoverlay=gpio-ir,gpio_pin=4" /boot/config.txt; then
       if grep -q "^dtoverlay=gpio-ir,gpio_pin=" /boot/config.txt; then
-        sed -i "s/^dtoverlay=gpio-ir,gpio_pin=.*/dtoverlay=gpio-ir,gpio_pin=4/" "$(realpath /boot/config.txt)" || true
+        sed -i "s/^dtoverlay=gpio-ir,gpio_pin=.*/dtoverlay=gpio-ir,gpio_pin=4/" /boot/config.txt || true
       else
-        echo 'dtoverlay=gpio-ir,gpio_pin=4' >> "$(realpath /boot/config.txt)"
+        echo 'dtoverlay=gpio-ir,gpio_pin=4' >> /boot/config.txt
       fi
     fi
     systemctl enable lircd || true
@@ -26,17 +26,17 @@ if [ -f "$DEV_FILE" ]; then
     # enable UART
     if ! grep -q "^enable_uart=1" /boot/config.txt; then
       if grep -q "^enable_uart=" /boot/config.txt; then
-        sed -i "s/^enable_uart=.*/enable_uart=1/" "$(realpath /boot/config.txt)" || true
+        sed -i "s/^enable_uart=.*/enable_uart=1/" /boot/config.txt || true
       else
-        echo 'enable_uart=1' >> "$(realpath /boot/config.txt)"
+        echo 'enable_uart=1' >> /boot/config.txt
       fi
     fi
     # disable bluetooth
     if ! grep -q "^dtoverlay=disable-bt" /boot/config.txt; then
       if grep -q "^dtoverlay=.*able-bt" /boot/config.txt; then
-        sed -i "s/^dtoverlay=enable-bt/dtoverlay=disable-bt/" "$(realpath /boot/config.txt)" || true
+        sed -i "s/^dtoverlay=enable-bt/dtoverlay=disable-bt/" /boot/config.txt || true
       else
-        echo 'dtoverlay=disable-bt' >> "$(realpath /boot/config.txt)"
+        echo 'dtoverlay=disable-bt' >> /boot/config.txt
       fi
     fi
     # enable pypilot hat service

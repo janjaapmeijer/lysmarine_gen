@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=NOAA-APT Satellite Weather
+Name=noaa-apt Satellite Weather
 GenericName=Image decoder for APT signals from NOAA satellites
 Comment=NOAA-APT Satellite Weather
 Exec=bash -c "cd /usr/local/share/noaa-apt; noaa-apt"
-Icon=ar.com.mbernardi.noaa-apt
+Icon=noaa-apt
 Terminal=false
 Type=Application
-Categories=Radio
+Categories=Graphics;Utility;2DGraphics;RasterGraphics;HamRadio;Audio;ImageProcessing;
 Keywords=rtlsdr;rtl;sdr;wav;

@@ -6,5 +6,5 @@ Comment=Collision Regulations
 Exec=gnome-www-browser /usr/local/share/colreg/colreg.pdf
 Terminal=false
 Icon=document
-Categories=Utility
-Keywords=Utility
+Categories=Utilities
+Keywords=Utilities

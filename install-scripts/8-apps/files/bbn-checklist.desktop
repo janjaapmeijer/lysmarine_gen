@@ -6,5 +6,5 @@ Comment=Cruise Checklist
 Exec=gnome-www-browser /usr/local/share/bbn-checklist/bbn-checklist.html
 Terminal=false
 Icon=document
-Categories=Utility
-Keywords=Utility
+Categories=Utilities
+Keywords=Utilities

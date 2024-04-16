@@ -4,4 +4,4 @@ Name=Scale Down
 Exec=scale-down
 Terminal=false
 Icon=list-remove
-Categories=X-GNOME-Utilities;
+Categories=System

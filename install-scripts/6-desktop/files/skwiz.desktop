@@ -4,4 +4,4 @@ Name=SkWiz Instruments
 Exec=/opt/skwiz/skwiz
 Terminal=false
 Icon=/home/user/.local/share/icons/signalk.png
-Categories=Navigation;
+Categories=System

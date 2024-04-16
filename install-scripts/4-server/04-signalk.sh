@@ -63,46 +63,16 @@ npm cache clean --force
 npm install -g npm pnpm patch-package
 npm install -g --unsafe-perm --production signalk-server
 
-if [ "$BBN_KIND" == "LITE" ] ; then
-  ## Install signalk published plugins
-  pushd /home/signalk/.signalk
-    su signalk --shell=/bin/bash -c "export MAKEFLAGS='-j 8'; \
-                 export NODE_ENV=production; \
-                 pnpm install \
-                 @signalk/charts-plugin  \
-                 sk-resources-fs  \
-                 freeboard-sk-helper  \
-                 signalk-raspberry-pi-bme280  \
-                 signalk-raspberry-pi-bmp180  \
-                 signalk-raspberry-pi-ina219  \
-                 signalk-raspberry-pi-1wire  \
-                 signalk-raspberry-mcs  \
-                 signalk-venus-plugin  \
-                 signalk-mqtt-gw  \
-                 signalk-derived-data  \
-                 signalk-anchoralarm-plugin  \
-                 signalk-alarm-silencer  \
-                 signalk-simple-notifications  \
-                 signalk-to-nmea2000  \
-                 signalk-sonoff-ewelink  \
-                 signalk-shelly \
-                 @mxtommy/kip  \
-                 nmea0183-to-nmea0183 \
-                 xdr-parser-plugin \
-                 signalk-path-filter \
-                 signalk-datetime \
-                 @meri-imperiumi/signalk-autostate --unsafe-perm --loglevel error"
-  popd
-else
-  ## Install signalk published plugins
-  pushd /home/signalk/.signalk
-    su signalk --shell=/bin/bash -c "export MAKEFLAGS='-j 8'; \
+## Install signalk published plugins
+pushd /home/signalk/.signalk
+  su signalk -c "export MAKEFLAGS='-j 8'; \
                  export NODE_ENV=production; \
                  pnpm install \
                  @signalk/charts-plugin  \
                  sk-resources-fs  \
                  freeboard-sk-helper  \
                  skwiz  \
+                 tuktuk-chart-plotter  \
                  signalk-venus-plugin  \
                  signalk-mqtt-gw  \
                  signalk-mqtt-home-asisstant  \
@@ -178,12 +148,10 @@ else
                  @meri-imperiumi/signalk-autostate \
                  @meri-imperiumi/signalk-alternator-engine-on \
                  signalk-saillogger --unsafe-perm --loglevel error"
-  popd
-fi
+popd
 
-
-# sed -i "s#sudo ##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js || true
-# sed -i "s#/opt/vc/bin/##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js || true
+#sed -i "s#sudo ##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js
+#sed -i "s#/opt/vc/bin/##g" /home/signalk/.signalk/node_modules/signalk-raspberry-pi-monitoring/index.js
 sed -i 's#@signalk/server-admin-ui#admin#' "$(find /usr/lib/node_modules/signalk-server -name tokensecurity.js)" || true
 
 # see https://github.com/SignalK/signalk-server/pull/1455/
@@ -212,12 +180,7 @@ echo 'user ALL=(ALL) NOPASSWD: /usr/local/sbin/signalk-restart' >>/etc/sudoers
 
 systemctl enable signalk
 
-install -d /usr/local/share/applications
-
-if [ "$BBN_KIND" == "LITE" ] ; then
-  true
-else
-  bash -c 'cat << EOF > /usr/local/share/applications/signalk-node-red.desktop
+sudo bash -c 'cat << EOF > /usr/local/share/applications/signalk-node-red.desktop
 [Desktop Entry]
 Type=Application
 Name=SignalK-Node-Red
@@ -228,7 +191,8 @@ Terminal=false
 Icon=gtk-no
 Categories=Utility;
 EOF'
-  bash -c 'cat << EOF > /usr/local/share/applications/signalk-polar.desktop
+
+sudo bash -c 'cat << EOF > /usr/local/share/applications/signalk-polar.desktop
 [Desktop Entry]
 Type=Application
 Name=SignalK-Polar
@@ -239,21 +203,17 @@ Terminal=false
 Icon=gtk-about
 Categories=Utility;
 EOF'
-fi
-
-rm -rf /home/signalk/.cache
-rm -rf /home/signalk/.npm
-rm -rf /home/signalk/.node-*
-
-if [ "$BBN_KIND" == "LITE" ] ; then
-  exit 0
-fi
 
 bash -c 'cat << EOF > /usr/local/bin/gps-loc
 #!/bin/bash
 curl -s http://localhost:3000/signalk/v1/api/vessels/self/navigation/position/ | jq -M -jr '\''.value.latitude," ",.value.longitude','" ",.timestamp'\''
 EOF'
 chmod +x /usr/local/bin/gps-loc
+
+rm -rf /home/signalk/.cache
+rm -rf /home/signalk/.npm
+rm -rf /home/signalk/.node-*
+
 
 # See https://github.com/allinurl/gwsocket
 

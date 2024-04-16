@@ -25,6 +25,6 @@ Comment=Weather Fax Image Processor
 Exec=xwxtoimg
 Terminal=false
 Icon=gnome-globe
-Categories=Graphics;Weather
+Categories=HamRadio;Weather
 Keywords=HamRadio;Weather
 EOF'

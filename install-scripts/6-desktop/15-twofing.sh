@@ -4,9 +4,8 @@
 # and https://github.com/Plippo/twofing
 # and https://github.com/sjlongland/twofing
 
-apt-get -y install --no-install-recommends --no-install-suggests \
-  build-essential libx11-dev libxtst-dev libxi-dev x11proto-randr-dev libxrandr-dev \
-  xserver-xorg-input-evdev-dev xserver-xorg-input-evdev git # udev/bookworm-backports
+apt-get -y install build-essential libx11-dev libxtst-dev libxi-dev x11proto-randr-dev libxrandr-dev \
+  xserver-xorg-input-evdev-dev xserver-xorg-input-evdev git udev/bullseye-backports
 
 git clone --depth=1 https://github.com/bareboat-necessities/twofing.git
 

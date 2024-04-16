@@ -6,5 +6,5 @@ Exec=lxterminal -e 'curl wttr.in; read -p "Press any key..."'
 Icon=gnome-globe
 Terminal=false
 Type=Application
-Categories=Network
+Categories=WWW;Internet
 Keywords=weather

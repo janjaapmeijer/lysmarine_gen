@@ -25,7 +25,7 @@ StartupNotify=true
 Terminal=false
 Type=Application
 Icon=gnome-globe
-Categories=Radio;SDR
+Categories=HamRadio;SDR
 Keywords=HamRadio;SDR
 EOF'
 

@@ -6,5 +6,5 @@ Comment=Knots
 Exec=gnome-www-browser /usr/local/share/knots/knots.html
 Terminal=false
 Icon=document
-Categories=Utility
+Categories=Utilities
 Keywords=Utilities

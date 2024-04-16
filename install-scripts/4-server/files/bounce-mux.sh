@@ -1,4 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-/usr/bin/su -c '/usr/bin/systemctl is-enabled signalk && /usr/bin/systemctl reset-failed signalk && /usr/bin/systemctl restart signalk'
-/usr/bin/su -c '/usr/bin/systemctl is-enabled kplex && /usr/bin/systemctl reset-failed kplex && /usr/bin/systemctl restart kplex'
+systemctl is-enabled kplex && systemctl restart kplex
+
+sleep 1
+
+systemctl is-enabled signalk && systemctl restart signalk

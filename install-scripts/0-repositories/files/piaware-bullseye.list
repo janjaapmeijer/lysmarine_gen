@@ -1,0 +1,5 @@
+deb http://flightaware.com/adsb/piaware/files/packages bullseye piaware
+
+# deb [trusted=yes] https://raw.githubusercontent.com/abcd567a/rpi/master ./
+
+

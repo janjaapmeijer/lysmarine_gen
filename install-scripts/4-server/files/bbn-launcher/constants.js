@@ -16,7 +16,7 @@ module.exports = {
     {name: 'video', title: 'Video', img: 'youtube', bg: 'Peru', cmd: '/opt/youtube/youtube', args: []},
     {name: 'commands', title: 'Commands', img: 'travel', bg: 'Tan',  cmd: '/usr/local/bin/bbn-commands', args: []},
     {name: 'www', title: 'WWW', img: 'internet', bg: 'SteelBlue', cmd: 'onlyone', args: ['gnome-www-browser']},
-    {name: 'email', title: 'Email', img: 'email', bg: 'RoyalBlue', cmd: 'onlyone', args: ['thunderbird']},
+    {name: 'email', title: 'Email', img: 'email', bg: 'RoyalBlue', cmd: 'onlyone', args: ['geary']},
   ],
 
   commands2 : [
@@ -27,14 +27,14 @@ module.exports = {
     {name: 'provisioning', title: 'Provisioning', img: 'provisioning', bg: 'Peru',  cmd: 'onlyone', args: ['gnome-www-browser', '/usr/local/share/bbn-checklist/bbn-checklist.html']},
 
     {name: 'vessel', title: 'Vessel', img: 'ship', bg: 'RoyalBlue',  cmd: 'vessel-data', args: ['']},
-    {name: 'signalk', title: 'SignalK', img: 'dashboard', bg: 'ForestGreen', cmd: 'gtk-launch', args: ['signalk']},
+    {name: 'signalk', title: 'Signal K', img: 'dashboard', bg: 'ForestGreen', cmd: 'gtk-launch', args: ['signalk']},
     {name: 'terminal', title: 'Terminal', img: 'terminal', bg: 'RoyalBlue',  cmd: 'onlyone', args: ['lxterminal']},
     {name: 'tasks', title: 'Tasks', img: 'tasks', bg: 'Olive',  cmd: 'onlyone', args: ['lxtask']},
     {name: 'files', title: 'Files', img: 'folder', bg: 'ForestGreen', cmd: 'onlyone', args: ['thunar']},
 
     {name: 'power', title: 'Power', img: 'solar', bg: 'Tan', cmd: 'gtk-launch', args: ['victron']},
     {name: 'drone', title: 'Drones', img: 'drone', bg: 'SaddleBrown', cmd: 'onlyone', args: ['apmplanner2']},
-    {name: 'webcam', title: 'Web Cam', img: 'camera', bg: 'SeaGreen', cmd: 'onlyone', args: ['webcamoid']},
+    {name: 'webcam', title: 'Web Cam', img: 'camera', bg: 'SeaGreen', cmd: 'onlyone', args: ['cheese']},
     {name: 'messenger', title: 'Messenger', img: 'email', bg: 'RoyalBlue', cmd: '/opt/WA-Web-Msg/WA-Web-Msg', args: []},
     {name: 'social', title: 'Social', img: 'facebook', bg: 'DarkSeaGreen', cmd: '/opt/facebook/facebook', args: []},
   ],

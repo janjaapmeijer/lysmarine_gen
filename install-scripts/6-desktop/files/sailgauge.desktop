@@ -4,4 +4,4 @@ Name=Sail Gauge
 Exec=/opt/sailgauge/sailgauge
 Terminal=false
 Icon=/home/user/.local/share/icons/signalk.png
-Categories=Navigation;
+Categories=System

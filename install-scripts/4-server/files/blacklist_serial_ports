@@ -1,9 +1,7 @@
 /dev/ttyAMA0
 /dev/ttyAMA1
-/dev/ttyAMA10
 /dev/ttyAMA2
 /dev/ttyAMA3
-/dev/ttyAMA4
 /dev/ttyS0
 /dev/ttyS1
 /dev/ttyS2
@@ -20,10 +18,6 @@
 /dev/ttyUSB5
 /dev/ttyUSB6
 /dev/ttyUSB7
-/dev/ttyUSB8
-/dev/ttyUSB9
-/dev/ttyUSB10
-/dev/ttyUSB11
 /dev/ttyLYS_gps_0
 /dev/ttyLYS_gps_1
 /dev/ttyLYS_gps_2
@@ -32,7 +26,3 @@
 /dev/ttyLYS_ais_2
 /dev/ttySC0
 /dev/ttySC1
-/dev/ttySC2
-/dev/ttySC3
-/dev/ttySC4
-/dev/ttySC5

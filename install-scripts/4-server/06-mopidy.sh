@@ -1,9 +1,5 @@
 #!/bin/bash -e
 
-if [ "$BBN_KIND" == "LITE" ] ; then
-  exit 0
-fi
-
 # Install Mopidy and all dependencies:
 #apt-get -y install mopidy mopidy-mpd mopidy-spotify mopidy-tunein libspotify-dev xdotool
 
@@ -26,7 +22,7 @@ pip3 install Mopidy-YTMusic Mopidy-Pandora Mopidy-SoundCloud
 # Install Mopidy Web Clients:
 pip3 install Mopidy-MusicBox-Webclient Mopidy-Iris
 
-sh -c 'echo "mopidy ALL=NOPASSWD: /usr/local/lib/python3.11/dist-packages/mopidy_iris/system.sh" >> /etc/sudoers'
+sh -c 'echo "mopidy ALL=NOPASSWD: /usr/local/lib/python3.9/dist-packages/mopidy_iris/system.sh" >> /etc/sudoers'
 
 pip3 install yt-dlp
 pip3 install --upgrade requests
@@ -44,6 +40,8 @@ install -m 755 "$FILE_FOLDER"/mopidy-restart "/usr/local/sbin/mopidy-restart"
 
 echo "" >>/etc/sudoers
 echo 'user ALL=(ALL) NOPASSWD: /usr/local/sbin/mopidy-restart' >>/etc/sudoers
+
+rm -rf ~/.cache/pip
 
 # Enable mopidy service
 systemctl enable mopidy

@@ -4,4 +4,4 @@ Name=WA-Web-Msg
 Exec=/opt/WA-Web-Msg/WA-Web-Msg
 Terminal=false
 Icon=face-monkey
-Categories=Network
+Categories=WWW;Internet

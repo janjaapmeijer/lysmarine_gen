@@ -3,38 +3,18 @@
 apt-get clean
 npm cache clean --force
 
-if [ "$BBN_KIND" == "LITE" ] ; then
-  apt-get -q -y --no-install-recommends --no-install-suggests install i2c-tools python3-smbus dos2unix \
-    traceroute telnet socat gdal-bin openvpn \
-    gedit sysstat jq xmlstarlet uhubctl iotop libusb-1.0-0-dev \
-    rpi-imager piclone fontconfig gnome-disk-utility xfce4-screenshooter \
-    libcanberra-gtk-module hardinfo baobab
-else
-  apt-get -q -y --no-install-recommends --no-install-suggests install i2c-tools python3-smbus dos2unix \
-    traceroute telnet whois socat gdal-bin openvpn seahorse inxi \
-    dconf-editor gedit gnome-calculator \
-    python3-gpiozero libusb-1.0-0-dev \
-    sysstat jq xmlstarlet uhubctl iotop rsync timeshift at \
-    fontconfig gnome-disk-utility xfce4-screenshooter catfish \ # rpi-imager piclone 
-    libcanberra-gtk-module hardinfo baobab #  restic gnome-chess openpref nautic foxtrotgps
-fi
-
-O_DIR=$(pwd)
-chmod +x "$FILE_FOLDER"/add-ons/maiana-ais-install.sh
-"$FILE_FOLDER"/add-ons/maiana-ais-install.sh
-cd $O_DIR
-
-# https://github.com/raspberrypi/usbboot
-CUR_DIR="$(pwd)"
-mkdir -p /home/user/usbboot && cd /home/user/usbboot
-git clone --depth=1 https://github.com/raspberrypi/usbboot
-cd usbboot
-make -j 4
-cp rpiboot /usr/local/sbin/
-rm -rf /home/user/usbboot
-cd "$CUR_DIR"
+apt-get -q -y install i2c-tools python3-smbus dos2unix traceroute telnet whois socat gdal-bin openvpn seahorse inxi \
+  dconf-editor gedit gnome-calculator gnome-chess openpref \
+  python3-gpiozero libusb-1.0-0-dev \
+  sysstat jq xmlstarlet uhubctl iotop rsync timeshift restic at \
+  fontconfig gnome-disk-utility catfish xfce4-screenshooter hardinfo baobab # rpi-imager piclone nautic foxtrotgps
 
 systemctl disable openvpn
+
+apt-get clean
+
+
+#apt-get install software-properties-common
 
 # rpi-clone
 git clone --depth=1 https://github.com/bareboat-necessities/rpi-clone.git
@@ -45,33 +25,16 @@ chmod +x /usr/local/sbin/rpi-clone*
 rm -rf rpi-clone
 
 install -v "$FILE_FOLDER"/piclone.desktop -o 1000 -g 1000 "/home/user/.local/share/applications/piclone.desktop"
-install -v "$FILE_FOLDER"/noforeignland.desktop "/usr/local/share/applications/"
 
 apt-get clean
 npm cache clean --force
 
+#apt-get -q -y install arduino
+
+pip3 install adafruit-ampy
+
 install -v -m 0755 "$FILE_FOLDER"/bbn-change-password.sh "/usr/local/bin/bbn-change-password"
 install -v -m 0755 "$FILE_FOLDER"/bbn-rename-host.sh "/usr/local/sbin/bbn-rename-host"
-
-chmod +x "$FILE_FOLDER"/add-ons/*.sh
-"$FILE_FOLDER"/add-ons/windy-install.sh
-"$FILE_FOLDER"/add-ons/lightningmaps-install.sh
-"$FILE_FOLDER"/add-ons/marinetraffic-install.sh
-"$FILE_FOLDER"/add-ons/boatsetter-install.sh
-"$FILE_FOLDER"/add-ons/findacrew-install.sh
-"$FILE_FOLDER"/add-ons/noaa-enc-online-install.sh
-
-install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/timezone-setup.sh "/home/user/add-ons/"
-install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/os-settings.sh "/home/user/add-ons/"
-install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/change-password.sh "/home/user/add-ons/"
-install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/maritime-lib-install.sh "/home/user/add-ons/"
-
-if [ "$BBN_KIND" == "LITE" ] ; then
-  exit 0
-fi
-
-# TODO: disabled temp
-#pip3 install adafruit-ampy
 
 install -v -o 1000 -g 1000 -m 0644 "$FILE_FOLDER"/add-ons/readme.txt "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/deskpi-pro-install.sh "/home/user/add-ons/"
@@ -82,18 +45,21 @@ install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/sdrglut-install.sh "/h
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/pactor-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/nmea-sleuth-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/qtvlm-install.sh "/home/user/add-ons/"
-#install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/predict-install.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/predict-install.sh "/home/user/add-ons/"
 #install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/nodered-install.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/timezone-setup.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/calibrate-touchscreen.sh "/home/user/add-ons/"
-#install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/scytalec-inmarsat-install.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/os-settings.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/change-password.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/scytalec-inmarsat-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/winlink-pat-install.sh "/home/user/add-ons/"
-#install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/openplotter-install.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/openplotter-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/argonOne-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/navionics-demo-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/widevine-lib-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/wifi-drivers-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/boatsetter-install.sh "/home/user/add-ons/"
-#install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/java-upgrade.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/java-upgrade.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/lightningmaps-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/marinetraffic-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/windy-install.sh "/home/user/add-ons/"
@@ -101,15 +67,22 @@ install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/ads-b-install.sh "/hom
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/tvheadend-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/dvb-t-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/findacrew-install.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/maritime-lib-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/homeassistant-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/jellyfin-install.sh "/home/user/add-ons/"
-#install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/stdc-install.sh "/home/user/add-ons/"
+install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/stdc-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/sailorhat-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/maiana-ais-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/tripwire-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/noaa-enc-online-install.sh "/home/user/add-ons/"
 install -v -o 1000 -g 1000 -m 0755 "$FILE_FOLDER"/add-ons/xtide-install.sh "/home/user/add-ons/"
 
+/home/user/add-ons/windy-install.sh
+/home/user/add-ons/lightningmaps-install.sh
+/home/user/add-ons/marinetraffic-install.sh
+/home/user/add-ons/boatsetter-install.sh
+/home/user/add-ons/findacrew-install.sh
+/home/user/add-ons/noaa-enc-online-install.sh
 
 install -v "$FILE_FOLDER"/bbn-checklist.desktop "/usr/local/share/applications/"
 
@@ -140,14 +113,39 @@ install -v -m 0755 "$FILE_FOLDER"/vessel-data.sh "/usr/local/bin/vessel-data"
 install -v "$FILE_FOLDER"/vessel-data.desktop "/usr/local/share/applications/"
 
 if [ "$LMARCH" == 'arm64' ]; then
-  wget https://github.com/rclone/rclone/releases/download/v1.65.0/rclone-v1.65.0-linux-arm64.deb
-  dpkg -i rclone-v1.65.0-linux-arm64.deb
-  rm rclone-v1.65.0-linux-arm64.deb
+  wget https://github.com/rclone/rclone/releases/download/v1.59.1/rclone-v1.59.1-linux-arm64.deb
+  dpkg -i rclone-v1.59.1-linux-arm64.deb
+  rm rclone-v1.59.1-linux-arm64.deb
+#  wget https://downloads.rclone.org/rclone-current-linux-arm64.deb
+#  dpkg -i rclone-current-linux-arm64.deb
+#  rm rclone-current-linux-arm64.deb
+else
+  wget https://downloads.rclone.org/rclone-current-linux-arm.deb
+  dpkg -i rclone-current-linux-arm.deb
+  rm rclone-current-linux-arm.deb
 fi
 
-#install -v "$FILE_FOLDER"/term-weather.desktop "/usr/local/share/applications/"
+
+# https://github.com/raspberrypi/usbboot
+CUR_DIR="$(pwd)"
+mkdir -p /home/user/usbboot && cd /home/user/usbboot
+git clone --depth=1 https://github.com/raspberrypi/usbboot
+cd usbboot
+make -j 4
+cp rpiboot /usr/local/sbin/
+rm -rf /home/user/usbboot
+cd "$CUR_DIR"
+
+install -v "$FILE_FOLDER"/term-weather.desktop "/usr/local/share/applications/"
+
 
 git clone --depth=1 https://github.com/formatc1702/WireViz
 cd WireViz/
 python3 setup.py install
 cd .. && rm -rf WireViz/
+
+
+O_DIR=$(pwd)
+chmod +x "$FILE_FOLDER"/add-ons/maiana-ais-install.sh
+"$FILE_FOLDER"/add-ons/maiana-ais-install.sh
+cd $O_DIR

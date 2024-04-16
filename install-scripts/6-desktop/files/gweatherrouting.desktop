@@ -6,5 +6,5 @@ Icon=gnome-globe
 StartupNotify=true
 Terminal=false
 Type=Application
-Categories=Navigation;
+Categories=Navigation
 Keywords=Navigation

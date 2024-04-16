@@ -21,9 +21,6 @@ dtparam=i2c_arm=on
 dtparam=spi=on
 #dtoverlay=w1-gpio
 
-# Backlight control module for supporting it screens
-#dtoverlay=rpi-backlight
-
 ### lysmarine - screen preset ####################
 
 ## http://www.raspberrypiwiki.com/index.php/7_inch_HDMI_TFT_Capacitive_Touch_Screen_800x480_SKU:400579

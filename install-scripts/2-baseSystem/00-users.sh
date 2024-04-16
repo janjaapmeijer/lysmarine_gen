@@ -1,14 +1,14 @@
 #!/bin/bash -e
-apt-get -y -q install sudo policykit-1 polkitd-pkla
+apt-get -y -q install sudo policykit-1
 
 ## Force keyboard layout to be EN US by default.
 sed -i "s/XKBLAYOUT=.*/XKBLAYOUT=\"us\"/g" /etc/default/keyboard
 
-### Set root password.
+## Set root password.
 echo 'root:changeme' | chpasswd
 
-#DPASS=$(echo 'changeme' | openssl passwd -6 -stdin)
-#echo "user:$DPASS" > /boot/userconf.txt
+DPASS=$(echo 'changeme' | openssl passwd -6 -stdin)
+echo "user:$DPASS" > /boot/userconf.txt
 
 ## Remove default user (if any).
 oldUser=$(grep 1000:1000 /etc/passwd | cut -f1 -d:)
@@ -50,7 +50,7 @@ usermod -a -G bluetooth user
 usermod -a -G games user
 usermod -a -G users user
 
-# LIRC
+
 groupadd -r lirc
 useradd -r -g lirc -d /var/lib/lirc -s /usr/bin/nologin -c "LIRC daemon user" lirc
 usermod -a -G input lirc
@@ -69,7 +69,7 @@ if [[ -f /etc/sudoers.d/010_pi-nopasswd ]]; then # Remove no-pwd sudo to user pi
 	rm /etc/sudoers.d/010_pi-nopasswd
 fi
 
-echo 'PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"' >> /home/user/.profile # Give user capability to halt and reboot.
+echo 'PATH="/sbin:/usr/sbin:$PATH"' >> /home/user/.profile # Give user capability to halt and reboot.
 
 if [ -f /root/.not_logged_in_yet ]; then # Disable first login script.
 	rm /root/.not_logged_in_yet
@@ -79,6 +79,10 @@ fi
 if [ -f /etc/xdg/user-dirs.defaults ]; then
   sed -i 's/^TEMPLATES=/#&/'   /etc/xdg/user-dirs.defaults
   sed -i 's/^PUBLICSHARE=/#&/' /etc/xdg/user-dirs.defaults
+#  sed -i 's/^DESKTOP=/#&/'     /etc/xdg/user-dirs.defaults
+#  sed -i 's/^MUSIC=/#&/'       /etc/xdg/user-dirs.defaults
+#  sed -i 's/^PICTURES=/#&/'    /etc/xdg/user-dirs.defaults
+#  sed -i 's/^VIDEOS=/#&/'      /etc/xdg/user-dirs.defaults
 fi
 
 ln -s /root /home/root # for openplotter

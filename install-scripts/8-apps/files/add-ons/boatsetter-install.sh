@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-bash -c 'cat << EOF > /usr/local/share/applications/boatsetter.desktop
+sudo bash -c 'cat << EOF > /usr/local/share/applications/boatsetter.desktop
 [Desktop Entry]
 Type=Application
 Name=BoatSetter
@@ -9,5 +9,5 @@ Comment=BoatSetter
 Exec=gnome-www-browser https://www.boatsetter.com/
 Terminal=false
 Icon=gnome-globe
-Categories=Network;
+Categories=WWW;Internet
 EOF'

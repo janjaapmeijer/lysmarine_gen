@@ -4,4 +4,4 @@ Name=TukTuk Chartplotter
 Exec=/opt/tuktuk/tuktuk
 Terminal=false
 Icon=/home/user/.local/share/icons/signalk.png
-Categories=Navigation;
+Categories=System;Navigation;Chart;

@@ -1,16 +1,16 @@
 #!/bin/bash -e
 
-if [ "$BBN_KIND" == "LITE" ] ; then
-  exit 0
-fi
-
 # See: https://getpat.io/
 
 apt-get -y install libax25 ax25-tools tmd710-tncsetup
 
-wget https://dl.cloudsmith.io/public/bbn-projects/bbn-deb-repo/deb/debian/pool/bookworm/main/p/pa/pat_0.15.1/pat_0.15.1_arm64.deb
-dpkg -i pat_0.15.1_arm64.deb && rm pat_0.15.1_arm64.deb
-
+if [ "$LMARCH" == 'armhf' ]; then
+  wget https://github.com/la5nta/pat/releases/download/v0.12.1/pat_0.12.1_linux_armhf.deb
+  dpkg -i pat_0.12.1_linux_armhf.deb && rm pat_0.12.1_linux_armhf.deb
+else
+  wget https://dl.cloudsmith.io/public/bbn-projects/bbn-deb-repo/deb/debian/pool/bullseye/main/p/pa/pat_0.12.1-1/pat_0.12.1-1_arm64.deb
+  dpkg -i pat_0.12.1-1_arm64.deb && rm pat_0.12.1-1_arm64.deb
+fi
 # See: https://www.cantab.net/users/john.wiseman/Documents/ARDOPC.html
 wget -O ardopc http://www.cantab.net/users/john.wiseman/Downloads/Beta/piardopc
 install ardopc /usr/local/bin && rm ardopc
@@ -40,9 +40,9 @@ Comment=jpskmail for WinLink
 Exec=sh -c "cd /home/user/jpskmail; java -jar JavaPskmailServer-0.9.4.a24-20210815.jar"
 Terminal=false
 Icon=radio
-Categories=Radio
+Categories=HamRadio;Radio
 Keywords=HamRadio;Radio
 EOF'
 
 ## Reduce excessive logging
-#sed '1 i :msg, contains, "Error reading from modem (Exception)" stop' -i /etc/rsyslog.conf
+sed '1 i :msg, contains, "Error reading from modem (Exception)" stop' -i /etc/rsyslog.conf

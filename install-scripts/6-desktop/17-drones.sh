@@ -2,8 +2,11 @@
 
 # https://github.com/ArduPilot/apm_planner
 
+if [ "$LMARCH" == 'armhf' ]; then
+  wget https://github.com/bareboat-necessities/apm_planner_4rpi/releases/download/v2.0.29-rc1-36-g1fba2b8fc/apmplanner2_2.0.29-rc1-36-g1fba2b8fc_armhf.deb -O apmplanner2.deb
+fi
 if [ "$LMARCH" == 'arm64' ]; then
-  wget https://github.com/bareboat-necessities/apm_planner_4rpi/releases/download/v2.0.29-rc1-36-g1fba2b8fc/apmplanner2_2.0.30-11-ge4ff0173d_arm64.deb -O apmplanner2.deb
+  wget https://github.com/bareboat-necessities/apm_planner_4rpi/releases/download/v2.0.29-rc1-36-g1fba2b8fc/apmplanner2_2.0.29-rc1-36-g1fba2b8fc_arm64.deb -O apmplanner2.deb
 fi
 
 dpkg -i apmplanner2.deb && rm -f apmplanner2.deb

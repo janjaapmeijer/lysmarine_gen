@@ -54,6 +54,6 @@ Exec=gnome-www-browser http://localhost:8000/app?host=venus.local&port=9001
 # Read: https://github.com/victronenergy/venus-html5-app
 Terminal=false
 Icon=battery-symbolic
-Categories=X-GNOME-Utilities;
+Categories=Utility;
 EOF'
 

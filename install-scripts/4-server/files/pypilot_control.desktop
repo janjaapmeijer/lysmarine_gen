@@ -4,4 +4,4 @@ Name=Pypilot Control
 Exec=onlyone pypilot_control
 Terminal=false
 Icon=go-jump
-Categories=Navigation;
+Categories=Utility

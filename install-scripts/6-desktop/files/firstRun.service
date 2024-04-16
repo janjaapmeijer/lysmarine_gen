@@ -4,7 +4,7 @@ ExecStart=/usr/local/sbin/firstrun
 User=root
 
 [Unit]
-Before=lightdm.service
+Before=graphical.target
 
 [Install]
 WantedBy=multi-user.target

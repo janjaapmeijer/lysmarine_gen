@@ -2,7 +2,7 @@
 
 if [ -L /dev/twofingtouch ]; then
   if [ ! -f /usr/share/X11/xorg.conf.d/90-touchinput.conf ]; then
-    MATCH_PRODUCT="$(udevadm info -a -n /dev/twofingtouch | grep 'ATTRS{name}' | sed -e 's#.*=="##' -e 's#"$##')"
+    MATCH_PRODUCT=$(udevadm info -a -n /dev/twofingtouch | grep "ATTRS{name}" | sed -e 's#.*=="##' -e 's#"$##')
     bash -c 'mkdir -p /usr/share/X11/xorg.conf.d; cat << EOF > /usr/share/X11/xorg.conf.d/90-touchinput.conf
 Section "InputClass"
     Identifier "calibration"

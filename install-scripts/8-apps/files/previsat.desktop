@@ -6,5 +6,5 @@ Comment=Previsat Satellite Tracker
 Exec=previsat
 Icon=gnome-globe
 Terminal=false
-Categories=Radio;
+Categories=Astronomy;HamRadio
 Keywords=Astronomy;HamRadio

@@ -9,7 +9,7 @@ Comment=HomeAssistant
 Exec=gnome-www-browser http://localhost:8123/
 Terminal=false
 Icon=user-home
-Categories=System
+Categories=WWW;Internet
 EOF'
 
 sudo systemctl --system daemon-reload
@@ -21,11 +21,6 @@ echo "Visit http://localhost:8123/ to continue HomeAssistant set up."
 
 echo "Going to sleep for 15 mins... Come back later to see ESPHome installation."
 sleep 900
-
-echo "Installing NMEA TCP integration..."
-sudo mkdir -p /home/homeassistant/.homeassistant/custom_components/
-sudo mv /home/homeassistant/.homeassistant/smart0183tcp/ /home/homeassistant/.homeassistant/custom_components/ || true
-sudo chown -R homeassistant:homeassistant /home/homeassistant/.homeassistant/custom_components/
 
 echo "Enabling ESPHome..."
 sudo systemctl --system daemon-reload
