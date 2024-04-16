@@ -65,7 +65,7 @@ jobs:
       - PKG_RELEASE=armbian
       - PKG_DISTRO=bullseye
       - PKG_ARCH=arm64
-      - BBN_KIND=lite
+      - BBN_KIND=LITE
       - EMU=off
     steps:
       - do-all
