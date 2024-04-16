@@ -28,14 +28,14 @@ apt-get clean
 #apt-get install software-properties-common
 
 # rpi-clone
-git clone --depth=1 https://github.com/bareboat-necessities/rpi-clone.git
-cd rpi-clone
-cp rpi-clone rpi-clone-setup /usr/local/sbin
-cd ..
-chmod +x /usr/local/sbin/rpi-clone*
-rm -rf rpi-clone
+# git clone --depth=1 https://github.com/bareboat-necessities/rpi-clone.git
+# cd rpi-clone
+# cp rpi-clone rpi-clone-setup /usr/local/sbin
+# cd ..
+# chmod +x /usr/local/sbin/rpi-clone*
+# rm -rf rpi-clone
 
-install -v "$FILE_FOLDER"/piclone.desktop -o 1000 -g 1000 "/home/user/.local/share/applications/piclone.desktop"
+# install -v "$FILE_FOLDER"/piclone.desktop -o 1000 -g 1000 "/home/user/.local/share/applications/piclone.desktop"
 
 apt-get clean
 npm cache clean --force
