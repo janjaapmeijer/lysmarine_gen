@@ -6,13 +6,14 @@
   LYSMARINE_VER=$2
   BBN_KIND=$3
 
+  hostname="Rockpi-4b"
   thisArch="armbian"
   cpuArch="arm64"
-  zipName="Armbian_23.8.1_Rockpi-4b_bookworm_current_6.1.50.img.xz"
-  imageSource="https://armbian.tnahosting.net/archive/rockpi-4b/archive/${zipName}"
+  zipName="Armbian_23.8.1_${hostname}_bookworm_current_6.1.50.img.xz"
+  imageSource="https://armbian.tnahosting.net/archive/${hostname,}/archive/${zipName}"
 
   if [ "$thisArch" == "armbian" ] ; then
-    log "Building Armbian for RockPi4b ..."
+    log "Building Armbian for ${hostname} ..."
   fi
   
   checkRoot
