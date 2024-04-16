@@ -36,15 +36,15 @@ cd "$CUR_DIR"
 
 systemctl disable openvpn
 
-# rpi-clone
-git clone --depth=1 https://github.com/bareboat-necessities/rpi-clone.git
-cd rpi-clone
-cp rpi-clone rpi-clone-setup /usr/local/sbin
-cd ..
-chmod +x /usr/local/sbin/rpi-clone*
-rm -rf rpi-clone
+# # rpi-clone
+# git clone --depth=1 https://github.com/bareboat-necessities/rpi-clone.git
+# cd rpi-clone
+# cp rpi-clone rpi-clone-setup /usr/local/sbin
+# cd ..
+# chmod +x /usr/local/sbin/rpi-clone*
+# rm -rf rpi-clone
 
-install -v "$FILE_FOLDER"/piclone.desktop -o 1000 -g 1000 "/home/user/.local/share/applications/piclone.desktop"
+# install -v "$FILE_FOLDER"/piclone.desktop -o 1000 -g 1000 "/home/user/.local/share/applications/piclone.desktop"
 install -v "$FILE_FOLDER"/noforeignland.desktop "/usr/local/share/applications/"
 
 apt-get clean
