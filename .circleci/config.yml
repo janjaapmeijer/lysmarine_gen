@@ -78,6 +78,7 @@ jobs:
       - PKG_RELEASE=armbian
       - PKG_DISTRO=bookworm
       - PKG_ARCH=arm64
+      - BBN_KIND=FULL
       - EMU=off
     steps:
       - do-all
