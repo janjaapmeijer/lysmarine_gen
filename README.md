@@ -21,7 +21,10 @@ The archive of different Armbian images for different device can be found [here]
 
 ## [Optional] Flash image on NVME
 
-wiki.radxa.com/Rockpi4/install/NVME
+- flash BBN OS image to microSD with balenaEtcher and insert into Rockpi
+- flash BBN OS image to NVME
+
+http://wiki.radxa.com/Rockpi4/install/NVME
 Step 1 : Method 1
 Step 2 : Option 2
 
