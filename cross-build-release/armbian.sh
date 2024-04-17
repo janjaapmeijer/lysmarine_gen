@@ -9,7 +9,7 @@
   hostname="Rockpi-4b"
   thisArch="armbian"
   cpuArch="arm64"
-  zipName="Armbian_23.8.1_${hostname}_bookworm_current_6.1.50.img.xz"
+  zipName="Armbian_23.11.1_${hostname}_bookworm_current_6.1.63.img.xz"
   imageSource="https://armbian.tnahosting.net/archive/${hostname,}/archive/${zipName}"
 
   if [ "$thisArch" == "armbian" ] ; then
