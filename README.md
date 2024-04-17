@@ -19,7 +19,24 @@ The archive of different Armbian images for different device can be found [here]
 * You can burn this image using RaspberryPi imager to SD card and use that SD card to boot your raspberry Pi
 * You can edit files inside install-scripts directory push them into github and customize your image.
 
-## [Optional] Add root to NVME
+## [Optional] Flash image on NVME
+
+wiki.radxa.com/Rockpi4/install/NVME
+Step 1 : Method 1
+Step 2 : Option 2
+
+### Format NVME
+    sudo fdisk -l
+    umount /dev/nvme0n1
+    sudo wipefs -a /dev/nvme0n1
+    sudo gdisk -l /dev/nvme0n1
+    sudo gdisk /dev/nvme0n1
+    > L 8305 Linux ARM64
+    > n
+    > w
+    sudo mkfs -t ext4 /dev/nvme0n1p1
+    #sudo mount /dev/nvme0n1p1 /mnt
+
 
 ## License
 
