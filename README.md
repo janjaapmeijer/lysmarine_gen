@@ -26,8 +26,8 @@ The archive of different Armbian images for different device can be found [here]
 - flash BBN OS image to microSD with balenaEtcher
 - insert microSD into Rockpi
 - insert NVME into Rockpi
-- (possibly shortcut pin23 and pin25)
-- flash BBN OS image to NVME with (make sure to remove pin 23 and 25 before flashing):
+- (possibly shortcut PIN **23** and **25**)
+- flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
 
         sudo dd if=lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
 
