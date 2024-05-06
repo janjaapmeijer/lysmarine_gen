@@ -16,13 +16,14 @@ The archive of different Armbian images for different device can be found [here]
 * Import CloudSmith key into circleci project settings (via env variable)
 * Edit publish-cloudsmith.sh options in .circleci/config.yml to put location of your cloudsmith repository and push the changes into github
 * After circleci build completes it will create and upload image to cloudsmith
-* You can burn this image using RaspberryPi imager to SD card and use that SD card to boot your raspberry Pi
 * You can edit files inside install-scripts directory push them into github and customize your image.
 
 ## [Optional] Flash image on NVME
 
 - flash BBN OS image to microSD with balenaEtcher and insert into Rockpi
 - flash BBN OS image to NVME
+
+    sudo dd if=lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
 
 http://wiki.radxa.com/Rockpi4/install/NVME
 Step 1 : Method 1
