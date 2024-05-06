@@ -19,15 +19,14 @@ The archive of different Armbian images for different device can be found [here]
 * You can edit files inside install-scripts directory push them into github and customize your image.
 
 ## [Optional] Flash image on NVME
+[http://wiki.radxa.com/Rockpi4/install/NVME](Install on M.2 NVME SSD)
+* Step 1 : Method 1
+* Step 2 : Option 2
 
 - flash BBN OS image to microSD with balenaEtcher and insert into Rockpi
 - flash BBN OS image to NVME
 
     sudo dd if=lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
-
-http://wiki.radxa.com/Rockpi4/install/NVME
-Step 1 : Method 1
-Step 2 : Option 2
 
 ### Format NVME
     sudo fdisk -l
