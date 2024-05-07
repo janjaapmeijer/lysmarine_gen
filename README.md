@@ -77,6 +77,7 @@ on linux pc:
 - insert microSD into Rockpi
 - (possibly shortcut PIN **23** and **25**)
 - insert NVME into Rockpi
+- copy BBN OS image file to SD (ie. ~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz)
 
 **Step 1 : Method 3 - follow steps in the link above**
 
@@ -99,13 +100,9 @@ Run:
 
 **Step 2 : Option 2**
 
-
 - flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
 
-        sudo dd if=lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
-
-# 3. Write image to SPI flash from USB OTG port
-
+        sudo dd if=~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
 
 
 
