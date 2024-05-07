@@ -109,7 +109,7 @@ Run:
 
 	nand-sata-install
 
-    	> Choose option: "Boot from MTD Flash - system on SATA, USB or NVMe"
+    > Choose option: "Boot from MTD Flash - system on SATA, USB or NVMe"
    	> Choose NVMe partition, eg. /dev/nvme0n1p1
    	> Accept erasing of the choosen partition with "Yes"
    	> Choose fs type (tested with ext4)
@@ -117,11 +117,11 @@ Run:
 
 **(this will copy the image from the SD card to the NVME drive)**
 
-	> Choose writing SPI bootloader with "Yes"
+    > Choose writing SPI bootloader with "Yes"
 
 **No, if you have flashed the SPI with radxa's bootloader**
 
-    	> Confirm that you want to flash it with "Yes"
+    > Confirm that you want to flash it with "Yes"
 	> Choose Exit
 	> Reboot or poweroff
 
@@ -138,6 +138,10 @@ Run:
 - flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
 
         sudo dd if=~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
+
+- shutdown
+- remove microSD
+- BBN OS should run from the NVME now
 
 ## License
 
