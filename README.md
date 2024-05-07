@@ -81,6 +81,7 @@ on linux pc:
 **Step 1 : Method 3 - follow steps in the link above**
 
 Format NVME with:
+
 	sudo fdisk -l
 	umount /dev/nvme0n1
 	sudo wipefs -a /dev/nvme0n1
