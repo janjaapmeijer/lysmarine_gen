@@ -114,7 +114,7 @@ Run:
    	> Accept erasing of the choosen partition with "Yes"
    	> Choose fs type (tested with ext4)
    	> Wait a few minutes for rootfs transfer to chosen partition
-    
+
 **(this will copy the image from the SD card to the NVME drive)**
 
 	> Choose writing SPI bootloader with "Yes"
@@ -133,11 +133,7 @@ Run:
 - (possibly shortcut PIN **23** and **25**)
 - boot rockpi
 
-
-
-
-
-**Step 2 : Option 2**
+**Step 2 : Option 2 (only if Method 1 is used)**
 
 - flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
 
