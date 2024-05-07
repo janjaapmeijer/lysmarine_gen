@@ -22,10 +22,8 @@ The archive of different Armbian images for different device can be found [here]
 
 ### 1. Write U-Boot image to SPI flash from USB OTG port
 [SPI install](https://wiki.radxa.com/Rockpi4/dev/spi-install)
-[NVME install](http://wiki.radxa.com/Rockpi4/install/NVME)
-* Step 1 : Method 1 or Method 3
-* Step 2 : Option 2
-  
+**Step 1 : Method 1 or Method 3**
+
 on pi:
 - boot pi in maskrom mode
 	- power off
@@ -51,7 +49,7 @@ on linux pc:
 		sudo rkdeveloptool wl 0 ~/Downloads/rockpi4b-uboot-trust-spi_2017.09-2697-ge41695afe3_20201219.img
 		sudo rkdeveloptool rd
 
-	**or remove image from SPI by creating zero.img and follow Method 3**:
+	**or remove image from SPI by creating zero.img and follow Method 3 (Armbian nand-sata-install script)**:
 
 		dd if=/dev/zero of=./zero.img bs=1M count=4
 	
@@ -71,27 +69,36 @@ on linux pc:
 
 - reboot pi and connect microSD and NVME
 
-[Install on M.2 NVME SSD](http://wiki.radxa.com/Rockpi4/install/NVME)
-* Step 1 : Method 1
-* Step 2 : Option 2
+### 2. Write BBN OS to NVME
+[NVME install](http://wiki.radxa.com/Rockpi4/install/NVME)
 
-   dd if=/dev/zero of=./zero.img bs=1M count=4
-Secondly, on your Linux PC, create zero.img.
+**Step 0: flash BBN OS image to microSD with balenaEtcher on Linux PC**
 
-   dd if=/dev/zero of=./zero.img bs=1M count=4
-Thirdly, flash zero.img to SPI device.
-
-   rkdeveloptool db rk3399_loader_spinor_v1.15.114.bin
-   rkdeveloptool wl 0 zero.img
-   rkdeveloptool rd    # will output: Reset Device OK.
-Finally, on your Linux PC, lsusb command show show the following usb devices
-
-   Bus 003 Device 005: ID 2207:330c
-
-- flash BBN OS image to microSD with balenaEtcher
 - insert microSD into Rockpi
-- insert NVME into Rockpi
 - (possibly shortcut PIN **23** and **25**)
+- insert NVME into Rockpi
+
+**Step 1 : Method 3 - follow steps in the link above**
+
+Format NVME with:
+	sudo fdisk -l
+	umount /dev/nvme0n1
+	sudo wipefs -a /dev/nvme0n1
+	sudo gdisk -l /dev/nvme0n1
+	sudo gdisk /dev/nvme0n1
+	> L 8305 Linux ARM64
+	> n
+	> w
+	sudo mkfs -t ext4 /dev/nvme0n1p1
+	#sudo mount /dev/nvme0n1p1 /mnt
+
+Run:
+
+	nand-sata-install
+
+**Step 2 : Option 2**
+
+
 - flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
 
         sudo dd if=lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
@@ -101,17 +108,7 @@ Finally, on your Linux PC, lsusb command show show the following usb devices
 
 
 
-### Format NVME
-    sudo fdisk -l
-    umount /dev/nvme0n1
-    sudo wipefs -a /dev/nvme0n1
-    sudo gdisk -l /dev/nvme0n1
-    sudo gdisk /dev/nvme0n1
-    > L 8305 Linux ARM64
-    > n
-    > w
-    sudo mkfs -t ext4 /dev/nvme0n1p1
-    #sudo mount /dev/nvme0n1p1 /mnt
+
 
 
 ## License
