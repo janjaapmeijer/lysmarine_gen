@@ -53,13 +53,13 @@ on linux pc:
 
 	**or remove image from SPI by creating zero.img and follow Method 3**:
 
-	dd if=/dev/zero of=./zero.img bs=1M count=4
-
-	rkdeveloptool db rk3399_loader_spinor_v1.15.114.bin
-	rkdeveloptool wl 0 zero.img
-	rkdeveloptool rd    # will output: Reset Device OK.
-
-	lsusb        # will outputL Bus 003 Device 005: ID 2207:330c
+		dd if=/dev/zero of=./zero.img bs=1M count=4
+	
+		rkdeveloptool db rk3399_loader_spinor_v1.15.114.bin
+		rkdeveloptool wl 0 zero.img
+		rkdeveloptool rd    # will output: Reset Device OK.
+	
+		lsusb        # will outputL Bus 003 Device 005: ID 2207:330c
 
 - if Creating Comm Object failed!
 
