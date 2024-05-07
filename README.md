@@ -105,6 +105,25 @@ on linux pc:
 	
 		ls /dev/mtdblock0
 
+### 3. Write BBN OS to NVME
+[NVME install](http://wiki.radxa.com/Rockpi4/install/NVME)
+
+- insert microSD into Rockpi
+- insert NVME into Rockpi
+- (possibly shortcut PIN **23** and **25**)
+- boot rockpi
+
+**Step 2 : Option 2 (if Method 1 is used)**
+
+- flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
+
+        sudo dd if=~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
+
+- shutdown
+- remove microSD
+  
+**Step 2 : if Method 3 is used**
+
 Run:
 
 	nand-sata-install
@@ -125,23 +144,10 @@ Run:
 	> Choose Exit
 	> Reboot or poweroff
 
-### 3. Write BBN OS to NVME
-[NVME install](http://wiki.radxa.com/Rockpi4/install/NVME)
-
-- insert microSD into Rockpi
-- insert NVME into Rockpi
-- (possibly shortcut PIN **23** and **25**)
-- boot rockpi
-
-**Step 2 : Option 2 (only if Method 1 is used)**
-
-- flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
-
-        sudo dd if=~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
-
-- shutdown
 - remove microSD
-- BBN OS should run from the NVME now
+
+**!!  BBN OS should run from the NVME now  !!**
+
 
 ## License
 
