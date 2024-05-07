@@ -38,18 +38,18 @@ on pi:
 on linux pc:
 - Install rkdeveloptool on linux pc
 
-	lsusb
-		Bus 003 Device 005: ID 2207:330c
-	rkdeveloptool ld
-		DevNo=1	Vid=0x2207,Pid=0x330c,LocationID=102	Maskrom
+		lsusb
+			Bus 003 Device 005: ID 2207:330c
+		rkdeveloptool ld
+			DevNo=1	Vid=0x2207,Pid=0x330c,LocationID=102	Maskrom
 
 **(!) before going further remove PIN 23 and 25**
 - download SPI loader .bin and u-boot and trust.img to linux pc:
 [https://dl.radxa.com/rockpi/images/loader/spi/](https://dl.radxa.com/rockpi/images/loader/spi/)
 
-	sudo rkdeveloptool db ~/Downloads/rk3399_loader_spinor_v1.15.114.bin
-	sudo rkdeveloptool wl 0 ~/Downloads/rockpi4b-uboot-trust-spi_2017.09-2697-ge41695afe3_20201219.img
-	sudo rkdeveloptool rd
+		sudo rkdeveloptool db ~/Downloads/rk3399_loader_spinor_v1.15.114.bin
+		sudo rkdeveloptool wl 0 ~/Downloads/rockpi4b-uboot-trust-spi_2017.09-2697-ge41695afe3_20201219.img
+		sudo rkdeveloptool rd
 
 	**or remove image from SPI by creating zero.img and follow Method 3**:
 
