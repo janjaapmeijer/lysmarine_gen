@@ -57,7 +57,7 @@ on linux pc:
 		rkdeveloptool wl 0 zero.img
 		rkdeveloptool rd    # will output: Reset Device OK.
 	
-		lsusb        # will outputL Bus 003 Device 005: ID 2207:330c
+		lsusb        # will output: Bus 003 Device 005: ID 2207:330c
 
 - if Creating Comm Object failed!
 
@@ -67,17 +67,18 @@ on linux pc:
 
 		echo -1 | sudo tee /sys/module/usbcore/parameters/autosuspend
 
-- reboot pi and connect microSD and NVME
+- shutdown pi, remove usb-to-usb and shortcut PIN23/25
 
 ### 2. Write BBN OS to NVME
 [NVME install](http://wiki.radxa.com/Rockpi4/install/NVME)
 
-**Step 0: flash BBN OS image to microSD with balenaEtcher on Linux PC**
-
+**Step 0: flash BBN OS image**
+- flash to microSD with balenaEtcher on Linux PC 
+- copy BBN OS image file to microSD (ie. ~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz)
+  
 - insert microSD into Rockpi
-- (possibly shortcut PIN **23** and **25**)
 - insert NVME into Rockpi
-- copy BBN OS image file to SD (ie. ~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz)
+- (possibly shortcut PIN **23** and **25**)
 
 **Step 1 : Method 3 - follow steps in the link above**
 
