@@ -83,27 +83,27 @@ on linux pc:
 
 - remove image from SPI by creating zero.img and follow Method 3 (Armbian nand-sata-install script)
 
-	dd if=/dev/zero of=./zero.img bs=1M count=4
-
-	rkdeveloptool db rk3399_loader_spinor_v1.15.114.bin
-	rkdeveloptool wl 0 zero.img
-	rkdeveloptool rd    # will output: Reset Device OK.
-
-	lsusb        # will output: Bus 003 Device 005: ID 2207:330c
+		dd if=/dev/zero of=./zero.img bs=1M count=4
+	
+		rkdeveloptool db rk3399_loader_spinor_v1.15.114.bin
+		rkdeveloptool wl 0 zero.img
+		rkdeveloptool rd    # will output: Reset Device OK.
+	
+		lsusb        # will output: Bus 003 Device 005: ID 2207:330c
 
 - add the following lines to /boot/armbianEnv.txt
 
- 	overlays=spi-jedec-nor
-	param_spinor_spi_bus=1
+	 	overlays=spi-jedec-nor
+		param_spinor_spi_bus=1
 
 - reboot
 - verify that the SPI mtd interface is enabled
   
-	lsblk
-
-	or
-
-	ls /dev/mtdblock0
+		lsblk
+	
+		or
+	
+		ls /dev/mtdblock0
 
 Run:
 
