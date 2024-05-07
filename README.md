@@ -4,11 +4,10 @@ This is a fork of:
 - [https://github.com/bareboat-necessities/lysmarine_gen](https://github.com/bareboat-necessities/lysmarine_gen)
 
 ## Choose which Armbian image your device needs
-The archive of different Armbian images for different device can be found [here](https://armbian.tnahosting.net/archive) and need to be changed in /cross-build-release/armbian.sh.
+The archive of different Armbian images for different device can be found [here](https://armbian.tnahosting.net/archive) and the address needs to be changed in /cross-build-release/armbian.sh.
 
 ## Steps to create your own BBN Marine OS image
 
-* Create GitHub account
 * Fork this project on GitHub
 * Create CircleCi account (Use logging in with GitHub)
 * Register .circleci/config.yml in CircleCi
@@ -79,6 +78,20 @@ on linux pc:
 - insert microSD into Rockpi
 - insert NVME into Rockpi
 - (possibly shortcut PIN **23** and **25**)
+- boot rockpi
+- add the following lines to /boot/armbianEnv.txt
+
+ 	overlays=spi-jedec-nor
+	param_spinor_spi_bus=1
+
+- reboot
+- verify that the SPI mtd interface is enabled
+  
+	lsblk
+
+	or
+
+	ls /dev/mtdblock0
 
 **Step 1 : Method 3 - follow steps in the link above**
 
@@ -99,16 +112,23 @@ Run:
 
 	nand-sata-install
 
+    	> Choose option: "Boot from MTD Flash - system on SATA, USB or NVMe"
+   	> Choose NVMe partition, eg. /dev/nvme0n1p1
+   	> Accept erasing of the choosen partition with "Yes"
+   	> Choose fs type (tested with ext4)
+   	> Wait a few minutes for rootfs transfer to chosen partition 
+**(this will copy the image from the SD card to the NVME drive)**
+	> Choose writing SPI bootloader with "Yes"
+**No, if you have flashed the SPI with radxa's bootloader**
+   	> Confirm that you want to flash it with "Yes"
+	> Choose Exit
+	> Reboot or poweroff
+
 **Step 2 : Option 2**
 
 - flash BBN OS image to NVME with (make sure to remove PIN **23** and **25** before flashing):
 
         sudo dd if=~/lysmaine-bbn-lite-bookworm_*-armbian-arm64.img.xz of=/dev/nvme0n1 bs=1M
-
-
-
-
-
 
 ## License
 
